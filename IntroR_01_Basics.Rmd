@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE,eval=FALSE)
 > * Subset and extract values from vectors.
 > * Analyze vectors with missing data.
 
-
+> This lesson is adapted from the first part of a [DataCarpentry workshop](https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
 
 ## Creating objects in R
 
