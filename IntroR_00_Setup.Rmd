@@ -133,14 +133,11 @@ tutorial below.
 2. Under the `File` menu, click on `New project`. Choose `New directory`, then
 `New project`.
 3. Enter a name for this new folder (or "directory"), and choose a convenient
-location for it. We will be working with the spiders dataset so perhaps name it `R_SpidersLab` or something similar. This will be your **working directory** for the class. 
+location for it.  This will be your **working directory** for the class. 
 4. Click on `Create project`.
-5. Inside your working directory, create a folder called **data**
-6. Copy the following files into your data folder
+5. If you are working with data, inside your working directory, create a folder called **data**
+6. Copy any data files into your data folder
 
->```{r, echo=FALSE,eval=TRUE,results='show'}
-knitr::kable(data.frame(FILES=list.files("./data")),justify="left",row.names=FALSE,col.names="")
-```
 
 
 
