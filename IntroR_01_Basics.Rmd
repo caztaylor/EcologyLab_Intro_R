@@ -22,6 +22,8 @@ knitr::opts_chunk$set(echo = TRUE,eval=FALSE)
 > * Inspect and manipulate  contents of vectors.
 > * Subset and extract values from vectors.
 > * Analyze vectors with missing data.
+> * creating data.frames, accessing parts of data frames
+> * what are factors?
 
 > This lesson is adapted from the first part of a [DataCarpentry workshop](https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
 
@@ -499,8 +501,73 @@ Recall that you can use the `typeof()` function to find the type of your atomic 
 >
 
 
+## Data Frames
+
+To represent table of data, R uses an object type called a data.frame. A data.frame has columns and rows. Each column is a `vector`, so all elements of any column will be the same type. Columns in a data.frame are almost always one of : numeric, integer, character,  logical, or factor. 
+
+We can create data.frames by using the `data.frame` function and setting the values of each column using  `=` 
+```{r}
+friends<-data.frame(name=c("Juan","Amaris","Camila","Frances","Mike","Sun","Jazmine"),age=c(21,25,32,20,45,38,19),height=c(5.4,6.0,5.6,5.7,5.8,5.5,5.2))
+friends
+```
+>##### Reading Data from Files 
+> You can also read data into R from a comma separated value (csv) file, using the `read.csv` function but we will not use this in this lesson.
+
+Data frames can be much bigger than the example above, which means that printing them is often not an option.  Onstead, there are various ways to inspect a data frame, such as:
+
+`str(df)` gives a very brief description of the data
+`names(df)` gives the name of each variables
+`summary(df)` gives some very basic summary statistics for each variable
+`head(df)` shows the first few rows
+`tail(df)` shows the last few rows.
+
+We can access single columns as vectors by using `$`, or by their number using `[[]]`. For example to access the age (2nd) column in friends, either of these lines of code:
+```{r,eval=FALSE}
+friends$age
+friends[[2]]
+```
+
+To access part of a data.frame and have it still be a data.frame, we use the single square brackets `[]` and we access by number [row,col]. Try a few of the below and see what they return to get the feel of this.
+```{r, eval=FALSE}
+friends[1,]   #to access a whole row, leave the col blank
+friends[,2] # this will access the 2nd column but it will return a one column data.frame rather than a vector
+
+friends[1:2,c(1,3)] #first and third columns in the first and second rows
+```
+
+We can also change the value of elements, rows, columns by assigning new values to them
+```{r, eval=FALSE}
+friends[2,3]<-5.9
+```
+
+or create new columns
+```{r}
+friends$eye_color<-c("brown","brown","hazel","blue","brown","green","brown")
+```
 
 
+
+
+## Factors
+In the friends data.frame we just created, `name` is  a factor. a factor is a categorical variable that can take on one of a fixed number of levels. It looks a lot like a character vector except with levels. You don't have to specify the levels when you create a factor, but if you don't, they will be put in alphabetical order.  Run each of the lines of code below and look at the resulting `size` object created.
+
+```{r, eval=FALSE}
+size<-factor(c("S","S","M","M","L")) # will have 3 levels (L,M,S)
+size<-factor(c("S","S","M","M","M")) # 2 levels (M,S)
+size<-factor(c("S","S","M","M","M"),levels=c("S","M","L"))
+size<-factor(c("S","S","M","M","l"),levels=c("S","M","L")) #why do we have a NA?
+
+```
+We use the `factor` function to create a factor from a character vector. to go the other way and convert a factor to a character vector, we use `as.character`
+```{r, eval=FALSE}
+size<-c("S","S","M","M","L")
+size_f<-factor(size,levels=c("S","M","L"))
+size<-as.character(size_f)
+
+```
+> ### Challenge 
+
+> Convert the name column in the friends data.frame into a character vector.
 
 
 
