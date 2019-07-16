@@ -14,7 +14,7 @@ In R a for-loop takes this form,  `variable` is the name of your iteration varia
 ```{r}
 for (variable in sequence) expression
 ```
-The expression can be a single R command - or several lines of commands wrapped in curly brackets:
+The expression can be a single R command - or several lines of commands wrapped in curly brackets (aka `braces`):
 
 ```{r}
 for (variable in sequence) { 
